@@ -9,55 +9,71 @@
       padding: 0;
       height: 100vh;
       overflow: hidden;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
       background: url('https://gitee.com/camisama/photo/raw/master/54d8f61b80fd55344246895853727bc.jpg') center center no-repeat;
       background-size: cover;
-      color: #fff;
+      color: #ff99aa;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
     }
 
     #stage, #countdown, #loveText, #content {
       position: absolute;
       width: 100%;
       text-align: center;
-      top: 40%;
+      top: 45%;
       transform: translateY(-50%);
       z-index: 2;
+      padding: 0 20px;
+      box-sizing: border-box;
     }
-    
+
     #countdown, #loveText, #content {
       display: none;
     }
-    
+
     #countdown span {
       font-size: 5em;
       animation: fadeIn 1s ease;
     }
-    
+
     #loveText {
       font-size: 3em;
       animation: fadeIn 1s ease-in-out;
     }
-    
+
     #content h1 {
-      font-size: 3em;
+      font-size: 2.5em;
       margin-top: 0.5em;
       animation: fadeInDown 1s ease;
     }
-    
+
     .love-text, .days {
-      font-size: 1.5em;
+      font-size: 1.3em;
       margin-top: 20px;
       animation: fadeIn 2s ease;
+      line-height: 1.6;
     }
-    
+
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
-    
+
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-50px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media screen and (max-width: 600px) {
+      #content h1 {
+        font-size: 2em;
+      }
+      .love-text, .days {
+        font-size: 1.1em;
+      }
+      #countdown span {
+        font-size: 3.5em;
+      }
     }
   </style>
 </head>
@@ -91,14 +107,14 @@
   const days = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
   document.getElementById("daysTogether").innerText = `我们已经在一起：${days} 天 ❤`;
 
-  // 粒子文字（520 情人节快乐）初始化
+  // 粒子文字初始化
   const canvas = document.getElementById("stage");
   const ctx = canvas.getContext("2d");
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
   ctx.font = "bold 100px sans-serif";
-  ctx.fillStyle = "white";
+  ctx.fillStyle = "#ffffff";
   ctx.textAlign = "center";
   ctx.fillText("520 情人节快乐", canvas.width / 2, canvas.height / 2);
 
