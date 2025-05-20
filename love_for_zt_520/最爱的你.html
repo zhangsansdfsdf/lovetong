@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>520，写给我最爱的你</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://gitee.com/camisama/photo/raw/master/54d8f61b80fd55344246895853727bc.jpg') center center no-repeat;
+      background-size: cover;
+      color: #fff;
+    }
+
+    #stage, #countdown, #loveText, #content {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      top: 40%;
+      transform: translateY(-50%);
+      z-index: 2;
+    }
+    
+    #countdown, #loveText, #content {
+      display: none;
+    }
+    
+    #countdown span {
+      font-size: 5em;
+      animation: fadeIn 1s ease;
+    }
+    
+    #loveText {
+      font-size: 3em;
+      animation: fadeIn 1s ease-in-out;
+    }
+    
+    #content h1 {
+      font-size: 3em;
+      margin-top: 0.5em;
+      animation: fadeInDown 1s ease;
+    }
+    
+    .love-text, .days {
+      font-size: 1.5em;
+      margin-top: 20px;
+      animation: fadeIn 2s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="stage"></canvas>
+<div id="countdown"><span id="number">3</span></div>
+<div id="loveText">我爱你张彤 ❤️</div>
+
+<div id="content">
+  <h1>520 情人节快乐 🎉</h1>
+  <div class="love-text">
+    爱你的浩，漂亮兼可爱的彤彤。<br>
+    我们于 2024 年 10 月 27 日相识，<br>
+    于 2025 年 2 月 10 日确定关系，<br>
+    2025 年 5 月 20 日是我们在一起的第 99 天。<br>
+    希望我们可以长长久久。<br>
+    我真的很喜欢你，很喜欢很喜欢的那种，希望一直和你在一起。
+  </div>
+  <div class="days" id="daysTogether">我们已经在一起：0 天</div>
+</div>
+
+<audio autoplay loop>
+  <source src="https://cdn.jsdelivr.net/gh/xiadd/music/%E5%91%8A%E7%99%BD%E6%B0%94%E7%90%83.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  // 设置天数
+  const startDate = new Date("2025-02-10");
+  const today = new Date();
+  const days = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+  document.getElementById("daysTogether").innerText = `我们已经在一起：${days} 天 ❤`;
+
+  // 粒子文字（520 情人节快乐）初始化
+  const canvas = document.getElementById("stage");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  ctx.font = "bold 100px sans-serif";
+  ctx.fillStyle = "white";
+  ctx.textAlign = "center";
+  ctx.fillText("520 情人节快乐", canvas.width / 2, canvas.height / 2);
+
+  setTimeout(() => {
+    canvas.style.display = "none";
+    document.getElementById("countdown").style.display = "block";
+    let count = 3;
+    const countdownInterval = setInterval(() => {
+      count--;
+      document.getElementById("number").innerText = count;
+      if (count === 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("countdown").style.display = "none";
+        document.getElementById("loveText").style.display = "block";
+        setTimeout(() => {
+          document.getElementById("loveText").style.display = "none";
+          document.getElementById("content").style.display = "block";
+        }, 2000);
+      }
+    }, 1000);
+  }, 2000);
+</script>
+
+</body>
+</html>
